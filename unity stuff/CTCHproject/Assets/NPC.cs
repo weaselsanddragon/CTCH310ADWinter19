@@ -5,7 +5,7 @@ using UnityEngine;
 public class NPC : MonoBehaviour
 {
     public int intel = 5;
-    public bool headBlow = true;
+    //public bool headBlow = true;
 
     void Greet()
     {
