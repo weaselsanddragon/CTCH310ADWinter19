@@ -6,6 +6,14 @@ public class camera : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
+    public AudioClip shootSound;
+
+    private AudioSource source;
+
+    void Awake()
+    {
+        source = GetComponent<AudioSource>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +38,7 @@ public class camera : MonoBehaviour
 
     void Fire()
     {
+        Pew();
         var bullet = (GameObject)Instantiate(
             bulletPrefab,
             bulletSpawn.position,
@@ -38,5 +47,10 @@ public class camera : MonoBehaviour
         bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 60;
 
         Destroy(bullet, 2.0f);
+    }
+
+    void Pew()
+    {
+        source.PlayOneShot(shootSound, 1.0f);
     }
 }
